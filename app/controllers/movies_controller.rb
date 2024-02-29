@@ -16,13 +16,9 @@ class MoviesController < ApplicationController
   end
 
   def createMany 
-    @movies = Movie.create(many_movies_params)   
+    LoadMoviesJob.perform_later(many_movies_params)
 
-    if @movies.any? {|movie| movie.errors.any? }
-      render json: { errors: @movies.map(&:errors) }, status: :unprocessable_entity
-    else
-      render json: @movies, status: :created
-    end
+    render json: {"Message": "Movies will be loaded in background!"}, status: :ok
   end
 
   private 
