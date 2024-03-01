@@ -1,8 +1,10 @@
 class MoviesController < ApplicationController
-  def index
-    @movies = Movie.all
+  def index 
+    movies_with_average = Movie.select("movies.*, ROUND(AVG(user_movies.score), 1) AS score")
+    .joins(:user_movies)
+    .group("movies.id")
 
-    render json: @movies
+    render json: movies_with_average
   end  
 
   def create

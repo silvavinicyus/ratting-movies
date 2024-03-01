@@ -50,3 +50,5 @@ end
 
 
 gem "sidekiq", "~> 7.2"
+
+gem "jwt", "~> 2.5"
