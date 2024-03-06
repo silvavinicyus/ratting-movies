@@ -65,6 +65,12 @@ Requisitos
 
      git clone git@github.com:silvavinicyus/ratting-movies-backend.git    
  </li>
+
+ <li>
+    Instale as dependências do projeto
+
+     bundle install    
+ </li>
  
  <li>
     Execute as migrações do banco de dados com o comando
