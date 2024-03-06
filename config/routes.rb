@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get '/movies', to: "movies#index"
   post '/movies', to: "movies#create"
-  post '/movies/many', to: "movies#createMany"
+  post '/many-movies', to: "movies#createMany"
 
   get '/users', to: "users#index"
   post '/users', to: "users#create"
