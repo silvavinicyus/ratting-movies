@@ -29,6 +29,15 @@ class UserMoviesController < ApplicationController
     render json: {Message: "User movies will be loaded in background!"}, status: :ok
   end
 
+  def index
+    movies_with_average_by_id = Movie.select("movies.*, COALESCE(ROUND(AVG(user_movies.score), 1), 0.0) AS score")
+    .left_outer_joins(:user_movies)
+    .where(user_movies: { user_id: current_user.id })
+    .group("movies.id")
+
+    render json: movies_with_average_by_id
+  end
+
   def many_user_movies_params
     params.permit(user_movies: [:movie_id, :score]).require(:user_movies)
   end
