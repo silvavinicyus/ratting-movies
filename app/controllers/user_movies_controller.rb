@@ -21,10 +21,10 @@ class UserMoviesController < ApplicationController
 
   end
 
-  def createMany
-    Rails.logger.info many_user_movies_params
+  def createMany      
+    file = JSON.parse(params[:file].read)    
 
-    LoadUserMoviesJob.perform_later(many_user_movies_params, current_user.id)
+    LoadUserMoviesJob.perform_later(file['user_movies'], current_user.id)
 
     render json: {Message: "User movies will be loaded in background!"}, status: :ok
   end
@@ -36,9 +36,5 @@ class UserMoviesController < ApplicationController
     .group("movies.id")
 
     render json: movies_with_average_by_id
-  end
-
-  def many_user_movies_params
-    params.permit(user_movies: [:movie_id, :score]).require(:user_movies)
   end
 end

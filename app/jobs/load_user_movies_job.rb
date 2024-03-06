@@ -5,19 +5,19 @@ class LoadUserMoviesJob < ApplicationJob
     Rails.logger.info "[JOB] Starting user movies loading"
     
     user_movies_params.each do |user_movie|
-      @user_movie_exists = UserMovie.find_by(user_id: current_user_id, movie_id: user_movie[:movie_id])
+      @user_movie_exists = UserMovie.find_by(user_id: current_user_id, movie_id: user_movie['movie_id'])
 
       if @user_movie_exists == nil
-        @user_movie_created = UserMovie.new(user_id: current_user_id, movie_id: user_movie[:movie_id], score: user_movie[:score])
+        @user_movie_created = UserMovie.new(user_id: current_user_id, movie_id: user_movie['movie_id'], score: user_movie['score'])
       
         if @user_movie_created.save
-          Rails.logger.info "User movie with id: #{user_movie[:movie_id]} created!" 
+          Rails.logger.info "User movie with id: #{user_movie['movie_id']} created!" 
         else
-          Rails.logger.info "Error while creating user movie with id: #{user_movie[:movie_id]}"     
+          Rails.logger.info "Error while creating user movie with id: #{user_movie['movie_id']}"     
         end
       else
-        @user_movie_exists.update(score: user_movie[:score])
-        Rails.logger.info "User movie with id: #{user_movie[:movie_id]} updated!" 
+        @user_movie_exists.update(score: user_movie['score'])
+        Rails.logger.info "User movie with id: #{user_movie['movie_id']} updated!" 
       end 
     end
 

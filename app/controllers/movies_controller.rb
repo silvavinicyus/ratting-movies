@@ -18,7 +18,9 @@ class MoviesController < ApplicationController
   end
 
   def createMany 
-    LoadMoviesJob.perform_later(many_movies_params)
+    file = JSON.parse(params[:file].read)
+
+    LoadMoviesJob.perform_later(file['movies'])
 
     render json: {"Message": "Movies will be loaded in background!"}, status: :ok
   end
