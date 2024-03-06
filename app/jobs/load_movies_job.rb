@@ -3,12 +3,7 @@ class LoadMoviesJob < ApplicationJob
 
   def perform(movies_params)
     Rails.logger.info "Starting loading job"
-    @movies = Movie.create(movies_params)
-
-    if @movies.any? {|movie| movie.errors.any? }
-      errors = @movies.map(&:errors)
-      Rails.logger.info "Error while running backgroung movies load.\n Errors: " + errors.to_s
-    end
+    @movies = Movie.create(movies_params)   
 
     Rails.logger.info "Finished loading movies"
   rescue StandardError => e
