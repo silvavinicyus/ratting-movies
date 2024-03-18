@@ -79,6 +79,12 @@ Requisitos
  </li>
 
  <li>
+    Execute os seeds para criação do usuário padrão do sistema
+
+     rails db:seed    
+ </li>
+
+ <li>
     Inicie o redis com o seguinte comando no terminal
 
      redis-server    
