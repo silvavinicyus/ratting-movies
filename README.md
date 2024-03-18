@@ -101,3 +101,52 @@ Requisitos
 
     rails s    
  </li>
+
+
+ ### Importação
+
+ #### Filmes
+ Para a importação dos filmes, o formato aceito é o de JSON, e o JSON deve seguir o seguinte padrão:  
+ 
+    {
+	   "movies": [
+          {
+              "title": "The Shawshank Redemption",
+              "director": "Frank Darabont"
+          },
+          {
+              "title": "The Godfather",
+              "director": "Francis Ford Coppola"
+          },
+          ...
+      ]
+    }
+  
+### Avaliaçãoes de filmes
+Para a importação das avaliações, o formato aceito também é o de JSON, e o JSON deve seguir o seguinte padrão:
+
+    {
+	   "user_movies": [
+            {
+                    "movie_id": 1,
+   			"score": 5
+   		},
+   		{
+   			"movie_id": 2,
+   			"score": 7
+   		},
+   		{
+   			"movie_id": 3,
+   			"score": 3
+   		},
+   		{
+   			"movie_id": 4,
+   			"score": 8
+   		},
+         ...
+      ]
+    }
+
+    
+#### Arquivos prontos
+Caso queira, há agora 2 arquivos na pasta "jsons" que contém exemplos de arquivos de importação para filmes (movies.json) e para notas (movies_scores.json)
